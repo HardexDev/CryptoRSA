@@ -12,21 +12,27 @@ public class Client {
     private BufferedReader bufr;
     
     public Client() throws IOException {
-        //TODO
+        this.socket = new Socket("127.0.0.1",1234);
+        InputStreamReader inputStreamReader = new InputStreamReader(this.socket.getInputStream());
+        this.bufr = new BufferedReader(inputStreamReader);
+
+        this.pw = new PrintWriter(this.socket.getOutputStream(), true);
     }
     
     public void sendMessage(String message) {
-        //TODO
+        System.out.println(">>" + message);
+        this.pw.println(message);
     }
         
     //Renvoie true si l'IA doit continuer
     public String receiveMessage() throws IOException {
-        //TODO
-        return null;
+        String message = this.bufr.readLine();
+        System.out.println("<<"+message);
+        return message;
     }
     
     public void end() throws IOException {
-        //TODO
+        this.socket.close();
     }
     
 }

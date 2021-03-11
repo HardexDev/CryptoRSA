@@ -1,7 +1,11 @@
 
+import Challenges.Challenge;
+import Challenges.Connection;
 import exceptions.ExceptionCryptographie;
 import protocoles.Protocole;
 import protocoles.*;
+
+import java.io.IOException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,7 +22,9 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ExceptionCryptographie {
+    public static void main(String[] args) throws ExceptionCryptographie, IOException {
+        Challenge connexion = new Connection();
+        connexion.executeChallenge();
     }
     
 }
