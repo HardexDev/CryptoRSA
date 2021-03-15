@@ -136,7 +136,23 @@ public class NombreBinaire {
      
      //Renvoie le résultat de l'addition de this avec mot2
      public NombreBinaire addition(NombreBinaire mot2) {
-       //TODO
+        BitSet b = new BitSet();
+       int R = 0;
+       boolean B1, B2;
+       for (int i=0; i<this.getTaille(); i++){
+           B1 = this.get(i);
+           B2 = mot2.get(i);
+           int b1Int = B1 ? 1 : 0;
+           int b2Int = B2 ? 1 : 0;
+           int add = b1Int + b2Int + R;
+           if (add == 2) {
+               b.set(i, false);
+               R = 1;
+           } else if (add == 3) {
+               b.set(i, true);
+               R = 1;
+           }
+       }
        return null;
      }
      
