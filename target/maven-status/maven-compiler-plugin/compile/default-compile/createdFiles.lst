@@ -1,5 +1,8 @@
+challenges\Quotient.class
+challenges\EstEgal.class
 donnees\cles\Cles.class
 entites\Personne.class
+challenges\EstPair.class
 exceptions\ExceptionConversionImpossible.class
 algorithmes\generateurdecles\GenerateurDeCles.class
 algorithmes\chiffrement\Algorithme.class
@@ -9,8 +12,12 @@ donnees\messages\Message.class
 challenges\Connection.class
 challenges\Addition.class
 donnees\messages\MessageString.class
+challenges\Soustraction.class
+challenges\Decalage.class
 exceptions\ExceptionAlgorithmeNonDefini.class
 protocoles\Protocole.class
+challenges\EstInferieur.class
+challenges\Multiplication.class
 entites\Univers.class
 exceptions\ExceptionChiffrementImpossible.class
 donnees\cles\CleInteger.class

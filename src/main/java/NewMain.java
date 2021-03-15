@@ -2,6 +2,14 @@
 import challenges.Addition;
 import challenges.Challenge;
 import challenges.Connection;
+import challenges.Decalage;
+import challenges.EstEgal;
+import challenges.EstInferieur;
+import challenges.EstPair;
+import challenges.Multiplication;
+import challenges.Quotient;
+import challenges.Soustraction;
+import donnees.NombreBinaire;
 import exceptions.ExceptionCryptographie;
 import protocoles.Protocole;
 import protocoles.*;
@@ -24,8 +32,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ExceptionCryptographie, IOException {
-        Challenge c = new Addition();
+        Challenge c = new Quotient();
         c.executeChallenge();
     }
-    
 }

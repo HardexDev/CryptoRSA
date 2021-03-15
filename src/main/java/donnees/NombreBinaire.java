@@ -150,7 +150,6 @@ public class NombreBinaire {
             int b2Int = B2 ? 1 : 0;
             
             int add = b1Int + b2Int + R;
-            System.out.println(b1Int + " + " + b2Int + " = " + add);
             
             R = add >= 2 ? 1 : 0; 
                 
@@ -165,26 +164,86 @@ public class NombreBinaire {
      
      //renvoie le resultat de l'addition de this avec mot3
      public NombreBinaire soustraction(NombreBinaire mot2) {
-       //TODO
-       return null;
+         NombreBinaire difference = new NombreBinaire(new BitSet(this.getTaille() + 1));
+        int R = 0;
+        boolean B1, B2;
+        
+        for (int i = 0; i < this.getTaille(); i++){
+            B1 = this.get(i);
+            B2 = (i < mot2.getTaille()) ? mot2.get(i) : false;
+
+            int b1Int = B1 ? 1 : 0;
+            int b2Int = B2 ? 1 : 0;
+            
+            int substract = b1Int - b2Int - R;
+            
+            R = substract < 0 ? 1 : 0; 
+                
+            if (substract < 0) {
+                substract += 2;
+            }
+            
+            difference.set(i, substract == 0 ? false : true);
+        }
+        
+        if (R == 1)
+            difference.set(this.getTaille(), true);
+        
+        return difference;
      }
      
      //Caclule le décalage de n bits (multiplie par 2^n)
      public NombreBinaire decalage(int n) {
-       //TODO
-       return null;
+       String nb = this.toString();
+       
+       for (int i = 0; i < n; i++) {
+           nb += 0;
+       }
+       
+       return new NombreBinaire(nb);
      }
      
      //Calcul la multiplication de this avec mot2
      public NombreBinaire multiplication(NombreBinaire mot2) {
-       //TODO
-       return null;
+       NombreBinaire produit = new NombreBinaire(0);
+       
+       for (int i = 0; i < mot2.getTaille(); i++) {
+           
+           if (mot2.get(i) == true) 
+               produit = produit.addition(this.decalage(i));
+       }
+       
+       return produit;
      }
      
      //Renvoie si this est plus petit ou égal à mot2
      public boolean estInferieurA(NombreBinaire mot2) {
-       //TODO
-       return false;
+        boolean estInferieur = false;
+       
+        if (this.getTaille() == mot2.getTaille()) {
+            boolean sortie = false;
+            int compteur = 1;
+            
+            do {
+                if (this.get(this.getTaille() - compteur) != mot2.get(this.getTaille() - compteur)) {
+                    if (this.get(this.getTaille() - compteur) == false)
+                        estInferieur = true;
+                    sortie = true;
+                }
+                else {
+                    if (compteur + 1 <= this.getTaille())
+                        compteur++;
+                    else
+                        sortie = true;
+                }
+            } while (!sortie);
+        }
+        else {
+            if (this.getTaille() < mot2.getTaille())
+                estInferieur = true;
+        }
+
+        return estInferieur;
      }
      
      //Calcul this modulo mot2 via une division euclidienne
@@ -194,9 +253,35 @@ public class NombreBinaire {
      }  
 
      //Calcul le quotient dans la division euclidienne de this par mot2
-     public NombreBinaire quotient(NombreBinaire mot2) {
-       //TODO
-       return null;
+     public NombreBinaire quotient(NombreBinaire b) {
+        NombreBinaire q = new NombreBinaire(0);
+        NombreBinaire r = new NombreBinaire(this.toString());
+        NombreBinaire qPrime, bPrime;
+        int n;
+
+        if (this.getTaille() >= b.getTaille()) {
+            do {
+                n = b.getTaille() < r.getTaille() ? r.getTaille() - b.getTaille() : 0;
+                bPrime = b.decalage(n);
+                System.out.println("b' = " + bPrime.toString());
+
+                if (r.estInferieurA(bPrime) && n > 0) {
+                    bPrime = b.decalage(n - 1);
+                    n--;
+                }
+
+                r = r.soustraction(bPrime);
+                System.out.println("r = " + r.toString());
+
+                q = q.addition(new NombreBinaire((int) (Math.pow(2, n))));
+                System.out.println("q = " + q.toString());
+                System.out.println("-----------------------------------");
+            } while (!r.estInferieurA(b));
+        }
+        else 
+            q = new NombreBinaire(0);
+
+        return q;
      }
      
      //Calcul de this^exposant modulo m par exponentiation modulaire rapide
@@ -206,14 +291,24 @@ public class NombreBinaire {
      }
      
      public boolean estEgal(NombreBinaire mot2) {
-       //TODO
-       return false;
+        boolean estEgal = false;
+       
+        if (this.getTaille() == mot2.getTaille()) {
+            if (this.toString().equals(mot2.toString()))
+                estEgal = true;
+        }
+        
+        return estEgal;
      }
      
      //Renvoie si un nombre est pair
      public boolean estPair() {
-       //TODO
-       return false;
+        boolean estPair = false;
+       
+        if (this.get(0) == false)
+            estPair = true;
+        
+        return estPair;
      }
      
      
