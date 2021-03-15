@@ -1,10 +1,11 @@
-package Challenges;
+package challenges;
 
 import coucheReseau.client.Client;
 
 import java.io.IOException;
 
 public class Connection implements Challenge {
+    
     @Override
     public void executeChallenge() throws IOException {
         Client client = new Client();

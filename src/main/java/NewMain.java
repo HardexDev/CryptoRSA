@@ -1,6 +1,7 @@
 
-import Challenges.Challenge;
-import Challenges.Connection;
+import challenges.Addition;
+import challenges.Challenge;
+import challenges.Connection;
 import exceptions.ExceptionCryptographie;
 import protocoles.Protocole;
 import protocoles.*;
@@ -23,8 +24,8 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ExceptionCryptographie, IOException {
-        Challenge connexion = new Connection();
-        connexion.executeChallenge();
+        Challenge c = new Addition();
+        c.executeChallenge();
     }
     
 }

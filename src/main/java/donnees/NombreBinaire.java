@@ -11,31 +11,6 @@ public class NombreBinaire {
         
     private BitSet listeBits;
     
-    //Génère un nombre binaire aléatoire de "taille" bits au maximum.
-    public static NombreBinaire randomAvecTailleMax(int taille) {
-       //TODO
-       return null;
-    }
-    
-    
-    //renvoie un nombre aléatoire entre min (inclu) et max (non inclu)
-    public static NombreBinaire random(NombreBinaire min,NombreBinaire max) {
-       //TODO
-       return null;
-    }
-   
-    
-    //Set un bit
-    public void set(int i, boolean valeur) {
-        this.listeBits.set(i,valeur);
-    }
-    
-    //Get un bit
-    public boolean get(int i) {
-        return this.listeBits.get(i);
-    }
-    
-    
     //Constructeurs standard
     public NombreBinaire() {
         this.listeBits = new BitSet();
@@ -96,6 +71,30 @@ public class NombreBinaire {
         }
     }
     
+    //Génère un nombre binaire aléatoire de "taille" bits au maximum.
+    public static NombreBinaire randomAvecTailleMax(int taille) {
+       //TODO
+       return null;
+    }
+    
+    
+    //renvoie un nombre aléatoire entre min (inclu) et max (non inclu)
+    public static NombreBinaire random(NombreBinaire min,NombreBinaire max) {
+       //TODO
+       return null;
+    }
+   
+    
+    //Set un bit
+    public void set(int i, boolean valeur) {
+        this.listeBits.set(i,valeur);
+    }
+    
+    //Get un bit
+    public boolean get(int i) {
+        return this.listeBits.get(i);
+    }
+    
     public BitSet asBitSet() {
         return this.listeBits;
     }
@@ -136,24 +135,32 @@ public class NombreBinaire {
      
      //Renvoie le résultat de l'addition de this avec mot2
      public NombreBinaire addition(NombreBinaire mot2) {
-        BitSet b = new BitSet();
-       int R = 0;
-       boolean B1, B2;
-       for (int i=0; i<this.getTaille(); i++){
-           B1 = this.get(i);
-           B2 = mot2.get(i);
-           int b1Int = B1 ? 1 : 0;
-           int b2Int = B2 ? 1 : 0;
-           int add = b1Int + b2Int + R;
-           if (add == 2) {
-               b.set(i, false);
-               R = 1;
-           } else if (add == 3) {
-               b.set(i, true);
-               R = 1;
-           }
-       }
-       return null;
+        int R = 0;
+        boolean B1, B2;
+        int taille = this.getTaille() > mot2.getTaille() 
+                ? this.getTaille() 
+                : mot2.getTaille();
+        NombreBinaire somme = new NombreBinaire(new BitSet(taille + 1));
+        
+        for (int i = 0; i < taille; i++){
+            B1 = (i < this.getTaille()) ? this.get(i) : false;
+            B2 = (i < mot2.getTaille()) ? mot2.get(i) : false;
+
+            int b1Int = B1 ? 1 : 0;
+            int b2Int = B2 ? 1 : 0;
+            
+            int add = b1Int + b2Int + R;
+            System.out.println(b1Int + " + " + b2Int + " = " + add);
+            
+            R = add >= 2 ? 1 : 0; 
+                
+            somme.set(i, (add % 2) == 0 ? false : true);
+        }
+        
+        if (R == 1)
+            somme.set(taille, true);
+        
+        return somme;
      }
      
      //renvoie le resultat de l'addition de this avec mot3
