@@ -247,16 +247,40 @@ public class NombreBinaire {
      }
      
      //Calcul this modulo mot2 via une division euclidienne
-     public NombreBinaire modulo(NombreBinaire mot2) {
-       //TODO
-       return null;
+     public NombreBinaire modulo(NombreBinaire b) {
+        NombreBinaire q = new NombreBinaire(0);
+        NombreBinaire r = new NombreBinaire(this.toString());
+        NombreBinaire qPrime;
+        NombreBinaire bPrime;
+        int n;
+
+        if (this.getTaille() >= b.getTaille()) {
+            do {
+                n = b.getTaille() < r.getTaille() ? r.getTaille() - b.getTaille() : 0;
+                bPrime = b.decalage(n);
+
+                if (!r.estInferieurA(b)) {
+                    if (r.estInferieurA(bPrime)) {
+                        bPrime = b.decalage(n - 1);
+                        n--;
+                    }
+
+                    r = r.soustraction(bPrime);
+
+                    q = q.addition(new NombreBinaire((int) (Math.pow(2, n))));
+                }
+            } while (!r.estInferieurA(b));
+        }
+
+        return r;
      }  
 
      //Calcul le quotient dans la division euclidienne de this par mot2
      public NombreBinaire quotient(NombreBinaire b) {
         NombreBinaire q = new NombreBinaire(0);
         NombreBinaire r = new NombreBinaire(this.toString());
-        NombreBinaire qPrime, bPrime;
+        NombreBinaire qPrime;
+        NombreBinaire bPrime;
         int n;
 
         if (this.getTaille() >= b.getTaille()) {
