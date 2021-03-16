@@ -1,5 +1,6 @@
 package donnees;
 
+import challenges.RandomTailleFixe;
 import exceptions.ExceptionConversionImpossible;
 import java.util.BitSet;
 
@@ -73,17 +74,40 @@ public class NombreBinaire {
     
     //Génère un nombre binaire aléatoire de "taille" bits au maximum.
     public static NombreBinaire randomAvecTailleMax(int taille) {
-       //TODO
-       return null;
+       String nombre = "";
+        
+        for (int i = 0; i < taille; i++) {
+            nombre += Math.random() > 0.5 ? "1" : "0";
+        }
+        
+        return new NombreBinaire(nombre);
     }
     
     
     //renvoie un nombre aléatoire entre min (inclu) et max (non inclu)
     public static NombreBinaire random(NombreBinaire min,NombreBinaire max) {
-       //TODO
-       return null;
+        NombreBinaire nombre = min;
+        int compteur = 0;
+        
+        if (!max.toString().equals(min.addition(new NombreBinaire(1)).toString())) {
+            do {
+                nombre = NombreBinaire.randomAvecTailleMax(min.getTaille() + (max.getTaille() - min.getTaille()));
+                compteur++;
+                if (compteur >= 1000) 
+                    nombre = min;
+            } while ((nombre.estInferieurA(min) || !nombre.estInferieurA(max)) && compteur < 1000000);
+        }
+        
+        return nombre;
     }
    
+    // Génère une clé privée
+    public NombreBinaire genererClePrivee(NombreBinaire mot1, NombreBinaire mot2) {
+        NombreBinaire x = mot1.soustraction(new NombreBinaire(1));
+        NombreBinaire y = mot2.soustraction(new NombreBinaire(1));
+        NombreBinaire phi = x.multiplication(y);
+        return this.inverseModulaire(phi);         
+    }
     
     //Set un bit
     public void set(int i, boolean valeur) {
@@ -334,9 +358,22 @@ public class NombreBinaire {
      }
      
      
-     public NombreBinaire PGCD(NombreBinaire mot2) {
-       //TODO
-       return null;
+     public NombreBinaire PGCD(NombreBinaire b) {
+       NombreBinaire a = new NombreBinaire(this.toString());
+       
+       if (a.estInferieurA(b)) {
+            NombreBinaire temp = a;
+            a = b;
+            b = temp;
+        }
+       
+       while(!b.estEgal(new NombreBinaire(0))) {
+           NombreBinaire temp = b;
+           b = a.modulo(b);
+           a = temp;
+       }
+       
+       return a;
      }
      
      //Calcul de l'inverse modulo nombre
