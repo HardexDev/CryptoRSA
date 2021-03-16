@@ -263,19 +263,17 @@ public class NombreBinaire {
             do {
                 n = b.getTaille() < r.getTaille() ? r.getTaille() - b.getTaille() : 0;
                 bPrime = b.decalage(n);
-                System.out.println("b' = " + bPrime.toString());
 
-                if (r.estInferieurA(bPrime) && n > 0) {
-                    bPrime = b.decalage(n - 1);
-                    n--;
+                if (!r.estInferieurA(b)) {
+                    if (r.estInferieurA(bPrime)) {
+                        bPrime = b.decalage(n - 1);
+                        n--;
+                    }
+
+                    r = r.soustraction(bPrime);
+
+                    q = q.addition(new NombreBinaire((int) (Math.pow(2, n))));
                 }
-
-                r = r.soustraction(bPrime);
-                System.out.println("r = " + r.toString());
-
-                q = q.addition(new NombreBinaire((int) (Math.pow(2, n))));
-                System.out.println("q = " + q.toString());
-                System.out.println("-----------------------------------");
             } while (!r.estInferieurA(b));
         }
         else 
