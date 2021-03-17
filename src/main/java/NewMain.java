@@ -9,7 +9,10 @@ import challenges.EstPair;
 import challenges.InverseModulaire;
 import challenges.Modulo;
 import challenges.Multiplication;
+import challenges.PGCD;
+import challenges.PuissanceModulaire;
 import challenges.Quotient;
+import challenges.RandomAvecBornes;
 import challenges.RandomTailleFixe;
 import challenges.Soustraction;
 import donnees.NombreBinaire;
@@ -35,7 +38,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ExceptionCryptographie, IOException {
-        Challenge c = new InverseModulaire();
+        Challenge c = new PuissanceModulaire();
         c.executeChallenge();
     }
 }

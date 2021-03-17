@@ -331,9 +331,45 @@ public class NombreBinaire {
      }
      
      //Calcul de this^exposant modulo m par exponentiation modulaire rapide
-     public NombreBinaire puissanceModulo(NombreBinaire exposant, NombreBinaire m) {
-       //TODO
-       return null;
+     public NombreBinaire puissanceModulo(NombreBinaire k, NombreBinaire n) {
+        /*
+        // Méthode itérative
+         
+        NombreBinaire p = new NombreBinaire(1);
+        NombreBinaire a = new NombreBinaire(this.toString());
+        NombreBinaire zero = new NombreBinaire(0);
+        NombreBinaire deux = new NombreBinaire(2);
+        
+        for (p = new NombreBinaire(1); zero.estInferieurA(k); k = k.quotient(deux)) {
+            if (!k.modulo(deux).toString().equals("0"))
+                p = p.multiplication(a).modulo(n);
+            
+            a = a.multiplication(a).modulo(n);
+        }*/
+        
+        // Méthode récursive
+        
+        NombreBinaire p = new NombreBinaire(1);
+        NombreBinaire a = new NombreBinaire(this.toString());
+        NombreBinaire zero = new NombreBinaire(0);
+        NombreBinaire deux = new NombreBinaire(2);
+            
+        while (zero.estInferieurA(k) && !k.estEgal(zero)) {
+            if (!k.estPair())
+                p = p.multiplication(a).modulo(n);
+            a = a.multiplication(a).modulo(n);
+            
+            for (int i = 0; i < k.getTaille(); i++) {
+                if (i != k.getTaille() - 1)
+                    k.set(i, k.get(i + 1));
+                else
+                    k.set(i, false);
+                
+                
+            }
+        };  
+        
+        return p;
      }
      
      public boolean estEgal(NombreBinaire mot2) {
