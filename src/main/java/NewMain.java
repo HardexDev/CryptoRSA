@@ -1,8 +1,12 @@
 
 import challenges.Addition;
 import challenges.Challenge;
+import challenges.Chiffrer;
+import challenges.ChiffrerMorceau;
 import challenges.Connection;
 import challenges.Decalage;
+import challenges.Dechiffrer;
+import challenges.DechiffrerMorceau;
 import challenges.EstEgal;
 import challenges.EstInferieur;
 import challenges.EstPair;
@@ -38,7 +42,7 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws ExceptionCryptographie, IOException {
-        Challenge c = new PuissanceModulaire();
+        Challenge c = new Dechiffrer();
         c.executeChallenge();
     }
 }

@@ -1,3 +1,4 @@
+challenges\ChiffrerMorceau.class
 challenges\Quotient.class
 algorithmes\chiffrement\AlgorithmeRSA.class
 challenges\EstEgal.class
@@ -24,8 +25,11 @@ challenges\Addition.class
 NewMain.class
 algorithmes\chiffrement\RSA\ParametresRSA.class
 donnees\messages\MessageString.class
+challenges\Chiffrer.class
 challenges\Modulo.class
+challenges\Dechiffrer.class
 challenges\Soustraction.class
+challenges\DechiffrerMorceau.class
 challenges\Decalage.class
 exceptions\ExceptionAlgorithmeNonDefini.class
 protocoles\Protocole.class
