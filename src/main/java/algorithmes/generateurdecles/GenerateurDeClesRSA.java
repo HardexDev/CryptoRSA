@@ -32,6 +32,19 @@ public class GenerateurDeClesRSA implements GenerateurDeCles{
        //TODO
        return null;
     }
+    
+    public void setP (NombreBinaire P){
+        this.P = P;
+    }
+    public void setQ (NombreBinaire Q){
+        this.Q = Q;
+    }
+    public void setPhi (NombreBinaire phi){
+        this.phi = phi;
+    }
+    public void setE (NombreBinaire e){
+        this.e = e;
+    }
 
     
     
