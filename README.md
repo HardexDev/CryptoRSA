@@ -1,3 +1,3 @@
 # CryptoRSA
-Solutions for cryptography project in the Star Wars theme.
+Solutions for cryptography project implementing RSA algorithm.
 Project done in the context of cryptography class at the Institute of Technoloy of Dijon
